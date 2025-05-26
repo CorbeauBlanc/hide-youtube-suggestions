@@ -1,0 +1,40 @@
+/* ==UserStyle==
+@name           Hiding video suggestions
+@version        1.2.0
+@namespace      CorbeauBlanc
+@preprocessor   stylus
+@var            select us-right-side-display "Hide suggestions on the right" {
+    "by moving them out of sight*": "initial",
+    "by completely removing them": "none"
+}
+@var            checkbox hideEndSuggestions "Hide the suggestions at the end of the video" 1
+@var            checkbox hideEndCards "Hide the end screen cards" 1
+==/UserStyle== */
+
+@-moz-document url-prefix("https://www.youtube.com/") {
+    ytd-watch-flexy[theater] #primary.ytd-watch-flexy {
+        max-width: unset !important;
+    }
+
+    ytd-watch-flexy[theater] #secondary.ytd-watch-flexy {
+        display: var(--us-right-side-display);
+        margin-top: var(--ytd-margin-35x);
+    }
+
+    ytd-watch-grid[cinematics-enabled] #below.ytd-watch-grid {
+        display: var(--us-right-side-display);
+        margin-top: calc(var(--ytd-margin-35x) * 2.2);
+    }
+
+    if hideEndSuggestions {
+        .html5-endscreen {
+            display: none;
+        }
+    }
+    
+    if hideEndCards {
+        .ytp-ce-element {
+            display: none !important;
+        }
+    }
+}
