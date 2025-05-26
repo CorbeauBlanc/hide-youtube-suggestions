@@ -3,7 +3,7 @@
 @version        1.2.0
 @namespace      CorbeauBlanc
 @preprocessor   stylus
-@var            select us-right-side-display "Hide suggestions on the right" {
+@var            select rightSideDisplay "Hide suggestions on the right" {
     "by moving them out of sight*": "initial",
     "by completely removing them": "none"
 }
@@ -17,12 +17,12 @@
     }
 
     ytd-watch-flexy[theater] #secondary.ytd-watch-flexy {
-        display: var(--us-right-side-display);
+        display: rightSideDisplay;
         margin-top: var(--ytd-margin-35x);
     }
 
     ytd-watch-grid[cinematics-enabled] #below.ytd-watch-grid {
-        display: var(--us-right-side-display);
+        display: rightSideDisplay;
         margin-top: calc(var(--ytd-margin-35x) * 2.2);
     }
 
