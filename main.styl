@@ -1,12 +1,9 @@
 /* ==UserStyle==
 @name           Hiding video suggestions
-@version        1.2.0
+@version        1.3.0
 @namespace      CorbeauBlanc
 @preprocessor   stylus
-@var            select rightSideDisplay "Hide suggestions on the right" {
-    "by moving them out of sight*": "initial",
-    "by completely removing them": "none"
-}
+@var            checkbox rightSideDisplay "Keep the side panel but move the suggestions out of sight" 0
 @var            checkbox hideEndSuggestions "Hide the suggestions at the end of the video" 1
 @var            checkbox hideEndCards "Hide the end screen cards" 1
 ==/UserStyle== */
@@ -15,19 +12,29 @@
     ytd-watch-flexy[theater] #primary.ytd-watch-flexy {
         max-width: unset !important;
     }
+    
+    if rightSideDisplay {
+        ytd-watch-flexy[theater] #secondary.ytd-watch-flexy {
+            margin-top: var(--ytd-margin-35x);
+        }
 
-    ytd-watch-flexy[theater] #secondary.ytd-watch-flexy {
-        display: rightSideDisplay;
-        margin-top: var(--ytd-margin-35x);
-    }
+        ytd-watch-grid[cinematics-enabled] #below.ytd-watch-grid {
+            margin-top: calc(var(--ytd-margin-35x) * 2.2);
+        }
+    } else {
+        ytd-watch-flexy[theater] #secondary.ytd-watch-flexy,
+        ytd-watch-grid[cinematics-enabled] #below.ytd-watch-grid {
+            width: fit-content;
+            min-width: unset;
+        }
 
-    ytd-watch-grid[cinematics-enabled] #below.ytd-watch-grid {
-        display: rightSideDisplay;
-        margin-top: calc(var(--ytd-margin-35x) * 2.2);
+        #related {
+            display: none;
+        }
     }
 
     if hideEndSuggestions {
-        .html5-endscreen {
+        .html5-endscreen, .ytp-modern-videowall-still.ytp-suggestion-set {
             display: none;
         }
     }
